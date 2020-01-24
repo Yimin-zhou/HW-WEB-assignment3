@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Smarter Shopping</title>
+    <link href="stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="printing.css" rel="stylesheet" type="text/css" media="print">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="myJS.js"></script>
+</head>
+
+<body>
+    <img id="logo" src="https://pngimage.net/wp-content/uploads/2018/06/s-logo-in-png-5.png" alt="our logo" width="150" height="150">
+    <header>
+        <h1>Welcome to our shop!</h1>
+    </header>
+    <pre id="slogan">
+Enjoy
+
+            a wide variety
+
+                    of exclusive
+
+                            online products
+    </pre>
+    <section>
+        <h2>See The Potential</h2>&nbsp;
+        <p id="intro">
+            Our website has been designed and shaped in such a way that our users and staff can get the very most functionality as possible.<br> Feel free to easily navigate our page using the links below!
+        </p>
+        <nav>
+            <dl>
+                <dt><a href="#products">Products For Sale</a></dt>
+                <dd>Click above to view a wide range of our new products for SALE!</dd>
+                <dt><a href="#additional">Additional info of products</a></dt>
+                <dd>Click above to view details about our products.</dd>
+                <dt><a href="#upcoming">Upcoming Products</a></dt>
+                <dd>Click above to view our upcoming products!</dd>
+            </dl>
+        </nav>
+    </section>
+    <br>
+    <section id="products">
+        <h2>Shop NOW!</h2><br>
+        <form id="form">
+            <table id="table1">
+                <caption><strong><em>Our Products for Sale</em></strong></caption>
+                <tr>
+                    <th onclick="sortTable1(0)" ; this.onclick=null;>Brands</th>
+                    <th onclick="sortTable1(1)" ; this.onclick=null;>Model</th>
+                    <th onclick="sortTable1(2)" ; this.onclick=null;>
+                        <abbr title="Operating System">OS</abbr>
+                    </th>
+                    <th>Image</th>
+                    <th onclick="sortTable1(4)" ; this.onclick=null;>Screen size (inch)</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="brand">BRAND:</label>
+                        <input type="text" name="brand" id="brand" required>
+                    </td>
+                    <td>
+                        <label for="model">MODEL:</label>
+                        <input type="text" name="model" id="model" required>
+                    </td>
+                    <td>
+                        <label for="os">OS:</label>
+                        <input type="text" name="os" id="os" required>
+                    </td>
+                    <td>
+                        <label for="image">IMAGE:</label>
+                        <input type="text" name="image" id="image" required>
+                    </td>
+                    <td>
+                        <label for="screensize">Screensize:</label>
+                        <input type="text" name="screensize" id="screensize" required>
+                        <button id='submit' type='button'>Submit</button>
+                    </td>
+                </tr>
+            </table>
+            <button id='reset' type="button">reset</button>
+            <button id='insert' type="button">insert</button>
+        </form>
+    </section>
+
+    <br>
+    <br>
+    <br>
+
+    <section id="additional">
+        <h2>Reach Further...</h2><br>
+        <table id="table2">
+            <caption><strong><em>More info on our products</em></strong></caption>
+            <tr>
+                <th onclick="sortTable2(0)" ; this.onclick=null;>Model</th>
+                <th onclick="sortTable2(1)" ; this.onclick=null;>Storage in GB</th>
+                <th onclick="sortTable2(2)" ; this.onclick=null;>Camera Quality</th>
+                <th onclick="sortTable2(3)" ; this.onclick=null;>Price in &#8364;</th>
+            </tr>
+            <tr>
+                <td>iPhone 11 Pro</td>
+                <td>64</td>
+                <td>12-megapixel</td>
+                <td>905</td>
+            </tr>
+            <tr>
+                <td>Galaxy S10</td>
+                <td>128</td>
+                <td>16-megapixel</td>
+                <td>635</td>
+            </tr>
+            <tr>
+                <td>P30 Pro</td>
+                <td>128</td>
+                <td>40-megapixel</td>
+                <td>690</td>
+            </tr>
+        </table>
+    </section>
+    <section id="upcoming">
+        <h2>Upcoming Products to look forward to!</h2>
+        <ol>
+            <li>Apple</li>
+        </ol>
+        <ul>
+            <li>iPhone 11 Extreme</li>
+            <li>iPhone 12 Beta</li>
+        </ul>
+        <ol>
+            <li>Samsung</li>
+        </ol>
+        <ul>
+            <li>Samsung Galaxy Smart</li>
+            <li>Samsung Galaxy S13</li>
+        </ul>
+        <ol>
+            <li>Huawei</li>
+        </ol>
+        <ul>
+            <li>Huawei Planet 4</li>
+            <li>Huawei P9000</li>
+        </ul>
+    </section>
+    <footer>
+        <address>
+                Slauerhoffpad 71<br>
+                Amsterdam<br>
+                The Netherlands<br>
+                2321WG
+        </address>
+
+        <br>
+        <p>Smarter Shopping &reg;<br> By Ross Medcalf and Yimim Zhou</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,239 @@
+#logo {
+    position: sticky;
+    top: 0;
+    z-index: -1;
+}
+
+body {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin: 5px;
+    background-color: #ffcd75;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 60px;
+    color: #1a1c2c;
+    text-align: center;
+    text-decoration: none;
+    font-size: 40px;
+}
+
+P {
+    font-family: sans-serif;
+}
+
+#slogan {
+    font-size: 40px;
+    font-style: italic;
+    font-weight: bold;
+    background: content-box radial-gradient(at top right, #ffcd75, #b13e53);
+}
+
+a:link {
+    color: #29366f;
+}
+
+a:visited {
+    color: #5d275d;
+    color: green;
+}
+
+a:active {
+    color: green;
+}
+
+a:hover {
+    background-color: #000;
+    color: #66CCFF;
+}
+
+h1 {
+    text-transform: capitalize;
+    font-size: 40px;
+}
+
+h2 {
+    font-weight: bold;
+    font-style: normal;
+    font-variant: normal;
+    text-align: center;
+}
+
+input:focus {
+    background-color: lightblue;
+}
+
+#intro {
+    text-indent: 10px;
+}
+
+address {
+    padding: 20px;
+}
+
+a {
+    text-align: center;
+}
+
+dd {
+    margin: auto;
+}
+
+ol {
+    color: red;
+    list-style-position: outside;
+}
+
+table,
+td,
+th,
+tr {
+    border-color: black;
+    border-style: solid;
+    border-spacing: 10px;
+    border-width: thin;
+}
+
+#upcoming {
+    background: content-box radial-gradient(at bottom right, #b13e53, #ffcd75);
+    text-align: left;
+}
+
+#products caption {
+    font: caption;
+    font-size: 50px;
+}
+
+#additional {
+    caption-side: top;
+    text-decoration: underline;
+}
+
+img {
+    float: right;
+}
+
+#products {
+    caption-side: top;
+    text-decoration: underline;
+}
+
+ol>li {
+    list-style-image: url("https://secure.gravatar.com/avatar/6fe5e1454dbe49ab6a05d75463374e83?s=32&d=mm&r=g");
+    vertical-align: baseline;
+}
+
+#products table {
+    text-align: center;
+}
+
+#upcoming ul {
+    list-style-type: none;
+    list-style-position: outside;
+    list-style: lower-roman;
+}
+
+@media only screen and (min-width: 300px) {
+    #logo {
+        position: sticky;
+        top: 0;
+        z-index: -1;
+    }
+    #slogan {
+        text-align: left;
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        font-weight: bold;
+    }
+    h2 {
+        font-size: 70px;
+    }
+    table {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+    caption {
+        font-size: 60px;
+    }
+    #products caption {
+        font-size: 60px;
+        text-align: center;
+    }
+    td>figure {
+        width: 60%;
+    }
+    td>figure>img {
+        width: 50%;
+    }
+    #products {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    #additional {
+        font-size: 50px;
+        font-weight: bold;
+    }
+    input[type=text] {
+        padding: 20px 0.1px;
+        margin: 0px 0;
+    }
+    input[type=submit] {
+        padding: 20px 20px;
+        margin: 0px 0;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    #slogan {
+        font-size: 40px;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+    }
+    h2 {
+        font-size: 40px;
+    }
+    table {
+        border-collapse: separate;
+        border: 1px solid black;
+    }
+    #products caption {
+        font-size: 60px;
+        text-align: center;
+    }
+    img {
+        float: right;
+    }
+    td>figure>img {
+        width: 40%;
+    }
+    #products {
+        font-size: 35px;
+        font-weight: bold;
+    }
+    #additional {
+        font-size: 50px;
+        font-weight: bold;
+    }
+    input[type=text] {
+        padding: 12px 5px;
+    }
+    input[type=submit] {
+        padding: 12px 5px;
+    }
+}
+
+@media (orientation: landscape) {
+    * {
+        flex-direction: row;
+    }
+}
+
+@media (orientation: portrait) {
+    * {
+        flex-direction: column;
+    }
+}
