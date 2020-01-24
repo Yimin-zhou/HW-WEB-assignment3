@@ -61,8 +61,8 @@ function sortTable2(z) {
 function reset() {
     $('#reset').click(function() {
         $.ajax({
-            url: '/delete',
-            type: "DELETE",
+            url: 'http://localhost:3000/phones',
+            type: "GET",
             dataType: "html",
             success: function(data) {
                 alert(data);
@@ -73,7 +73,7 @@ function reset() {
 
 function loadTableData() {
     $.ajax({
-        url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2',
+        url: 'http://localhost:4000/phones',
         type: "GET",
         dataType: "json",
         success: function(data) {
@@ -93,10 +93,10 @@ function loadTableData() {
 }
 
 function insertTableData() {
-    $("#insert").click(function() {
+    // $("#insert").click(function() {
         $.ajax({
-            url: 'http://localhost:3000/update',
-            type: "PUT",
+            url: 'http://localhost:3000/phones',
+            type: "GET",
             dataType: "json",
             success: function(data) {
                 var tableData = "";
@@ -112,7 +112,7 @@ function insertTableData() {
                 });
                 $('#table1').append(tableData);
             }
-        });
+        // });
     });
 }
 
@@ -136,7 +136,7 @@ function submitFormData() {
         e.preventDefault();
         $.ajax({
             type: "POST",
-            url: "https://wt.ops.labs.vu.nl/api20/a36aadb2",
+            url: "http://localhost:3000/phones",
             dataType: "json",
             data: info,
             success: function() {
@@ -147,7 +147,7 @@ function submitFormData() {
 }
 $(document).ready(function() {
     submitFormData();
-    insertTableData();
     loadTableData();
+    insertTableData();
     reset();
 })

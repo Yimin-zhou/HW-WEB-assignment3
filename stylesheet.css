@@ -23,6 +23,11 @@ body {
 P {
     font-family: sans-serif;
 }
+#apiTable{
+  caption-side: top;
+  text-decoration: underline;
+
+}
 
 #slogan {
     font-size: 40px;
@@ -84,6 +89,13 @@ dd {
 ol {
     color: red;
     list-style-position: outside;
+}
+
+ul>li{
+  text-align: left;
+}
+#dependencies {
+  text-align: left;
 }
 
 table,

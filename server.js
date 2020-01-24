@@ -1,17 +1,8 @@
 
-//
+
 
 const sqlite = require('sqlite3').verbose();
 let db = my_database('./phones.db');
-let html = 'http://localhost:3000/'
-
-
-// ###############################################################################
-// The database should be OK by now. Let's setup the Web server so we can start
-// defining routes.
-//
-// First, create an express application `app`:
-
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -27,27 +18,21 @@ let sql = `SELECT * FROM phones`;
 app.get('/phones', function(req, res) {
     db.all(sql, [], function(err, rows) {
         if (err) {
+            console.error(404);
             return res.json(err.message)
-            // console.error(404);
         }
-        console.log('ok, get');
+        console.log('Table has been loaded');
         return res.json(rows)
 
     });
 });
 
 //post new phones
-app.post('/phones', function(req, res) {
-    let post = {
-        "brand": req.body[0].brand,
-        "model": req.body[0].model,
-        "os": req.body[0].os,
-        "image": req.body[0].image,
-        "screensize": req.body[0].screensize
+app.post('/phones', function(req, res, err) {
+    if (err) {
+      res.status(404).send("That didnt go as planned")
     }
-    console.log(post)
-
-    db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize]);
+    db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, [req.body.brand, req.body.model, req.body.os, req.body.image, req.body.screensize]);
     console.log('Inserted phone entry into database')
     res.set({
       'Content-Type': 'text/plain',
@@ -63,8 +48,11 @@ app.post('/phones', function(req, res) {
 app.put('/update', function(req, res) {
     db.run(` UPDATE phones
       SET brand = ?,model=?, os=?, image=?,
-                    screensize=? WHERE id=?`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize, req.body[0].id], function(){
+                    screensize=? WHERE id=?`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize, req.body[0].id], function(err){
     console.log('updated brand')
+    if (err){
+        res.status(404).send('<h1>that didnt work!</h1>');
+    }
       res.set({
         'Content-Type': 'text/html',
         'Status' : 200,
@@ -77,8 +65,8 @@ app.put('/update', function(req, res) {
 
 //delete row
 app.delete('/delete', function(req, res) {
-    var deletedItem = req.body[0].brand
-    // var exists = isThere(req.body[0].brand)
+    var deletedItem = req.body[0].brand;
+
     db.run(`DELETE FROM phones WHERE brand=?`, [deletedItem], function(err, rows) {
         // if (exists == 0) {
         //     return res.status(404).send(err.message);
@@ -94,20 +82,14 @@ app.delete('/delete', function(req, res) {
 });
 });
 
-// function isThere(data){
-//     var y = NOT EXISTS (SELECT FROM phones WHERE brand=data)
-//     return y
-//
-// }
 
-
-// ###############################################################################
-// This should start the server, after the routes have been defined, at port 3000:
+// Starting server on port 3000:
 
 app.listen(3000);
 
-// ###############################################################################
-// Some helper functions called above
+
+// function initialising our database
+
 function my_database(filename) {
     // Conncect to db by opening filename, create filename if it does not exist:
     var db = new sqlite.Database(filename, (err) => {
@@ -128,9 +110,9 @@ function my_database(filename) {
         	screensize INTEGER NOT NULL
         	)`);
         db.all(`select count(*) as count from phones`, function(err, result) {
-            if (result[0].count == 1) {
+            if (result[0].count == 0) {
                 db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, ["Fairphone", "FP3", "Android", "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Fairphone_3_modules_on_display.jpg/320px-Fairphone_3_modules_on_display.jpg", "5.65"]);
-                db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, ["MyPhone", "22", "Android", "jpg", "5"]);
+
                 console.log('Inserted dummy phone entry into empty database');
             } else {
                 console.log("Database already contains", result[0].count, " item(s) at startup.");
