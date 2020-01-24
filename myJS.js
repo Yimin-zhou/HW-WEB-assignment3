@@ -61,8 +61,8 @@ function sortTable2(z) {
 function reset() {
     $('#reset').click(function() {
         $.ajax({
-            url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2/reset',
-            type: "GET",
+            url: '/delete',
+            type: "DELETE",
             dataType: "html",
             success: function(data) {
                 alert(data);
@@ -95,8 +95,8 @@ function loadTableData() {
 function insertTableData() {
     $("#insert").click(function() {
         $.ajax({
-            url: 'https://wt.ops.labs.vu.nl/api20/a36aadb2',
-            type: "GET",
+            url: 'http://localhost:3000/update',
+            type: "PUT",
             dataType: "json",
             success: function(data) {
                 var tableData = "";
