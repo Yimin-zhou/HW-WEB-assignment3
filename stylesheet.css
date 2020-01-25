@@ -87,7 +87,6 @@ dd {
 }
 
 ol {
-    color: red;
     list-style-position: outside;
 }
 
@@ -131,9 +130,12 @@ img {
     caption-side: top;
     text-decoration: underline;
 }
+/* thead {
+  text-align: left;
+} */
 
 ol>li {
-    list-style-image: url("https://secure.gravatar.com/avatar/6fe5e1454dbe49ab6a05d75463374e83?s=32&d=mm&r=g");
+  text-align: left;
     vertical-align: baseline;
 }
 

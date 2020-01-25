@@ -48,7 +48,7 @@ app.post('/phones', function(req, res, err) {
 app.put('/update', function(req, res) {
     db.run(` UPDATE phones
       SET brand = ?,model=?, os=?, image=?,
-                    screensize=? WHERE id=?`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize, req.body[0].id], function(err){
+                    screensize=? WHERE id=?`, [req.body.brand, req.body.model, req.body.os, req.body.image, req.body.screensize, req.body.id], function(err){
     console.log('updated brand')
     if (err){
         res.status(404).send('<h1>that didnt work!</h1>');
@@ -59,7 +59,7 @@ app.put('/update', function(req, res) {
         'Content-Length': '',
         'ETag': '12347'
         })
-        res.status(200).send('<h1>This entry has been edited!</h1>');
+        console.log(res.status(200).send('<h1>This entry has been edited!</h1>'));
 });
 });
 

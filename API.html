@@ -7,20 +7,29 @@
   </head>
   <body>
     <p class="para" id="intro"><h1>Welcome to our API Documentation.</h1>
-      In order to get started its as easy as downloading node package manage, opening the terminal in the directory that contains our files and
-      typing in the command <i>npm start</i> if you are missing some of the required packages you may need to use <i>npm install</i> before doing this.
-      See <a href="#packages">here</a> for a list of these packages.
-      It is our hope that this document helps you to easily navigate our website + server and give you full functionality to our DATABASE.</p>
+      In order to get started its as easy as:
+        <ol>
+          <li>Downloading node package manage(npm)</li>
+          <li>Opening your Command Shell/Terminal in the directory that contains our files
+          <li>Typing in the command <i>npm start</i> </li>
+            <ul>
+              <li>If you are missing some of the required packages you may need to use <i>npm install</i> before doing this.</li>
+              <li>See <a href="#packages">here</a> for a list of these packages.</li>
+            </ul>
+          </ol>
+      It is our hope that this document helps you to easily navigate our website + server and give you full functionality to our DATABASE.<br>
+        <h2>Once you have everything setup click <a href="http://localhost:3000/">here</a> to visit our webshop!</h2></p>
     <table>
       <thead> This is our guide to using our HTTP1.1 methods<thead>
       <th>Methods</th>
       <th>Actions</th>
         <tr>
           <td>GET</td>
-          <td>to be filled</td>
+          <td>This will retrieve all data from our database and return in an array of json elements with key value pairs</td>
         <tr>
           <td>POST</td>
-          <td>to be filled</td>
+          <td>Once filling in our form, using the submit button, you will have logged a POST request which adds the new elements to our database in a json string.
+            Each entry is given a unique value for the ID key.</td>
         </tr>
           <td>PUT</td>
           <td>to be filled</td>
@@ -29,12 +38,12 @@
           <td>to be filled</td>
       </tr>
       </table>
-      <h1>Common Errors</h1>
+      <h1>A Few Common Errors</h1>
       <p class='para'>
-        A few things we find that cause errors are when filling in the screensize. The screensize must be an numerical value.<br>
-        Either a float or an int.<br>
+
+        The screensize must be an numerical value. Either a float or an int, anything else will cause an error<br>
         The image block requires a url or else nothing will be rendered.<br>
-        The database is stored in JSON fromat and the form data is parsed the same way.<br>
+        The database is stored in JSON fromat and the form data is parsed the same way.<br>Attempting to submit form data to our database externally, without the proper formatting, will cause errors<br>
       </p>
     <table>
       <thead>ERROR Messages and what they mean<thead>
