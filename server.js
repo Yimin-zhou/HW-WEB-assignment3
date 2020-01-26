@@ -1,6 +1,3 @@
-
-
-
 const sqlite = require('sqlite3').verbose();
 let db = my_database('./phones.db');
 var express = require("express");
@@ -11,75 +8,129 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("."));
 
+//get from table
+let sql1 = `SELECT * FROM phones`;
+app.get('/', function(req, res) {
+    db.all(sql1, [], function(err, rows) {
+        if (err) {
+            res.status(404).send('<h1>NOT FOUND</h1>');
+        } else {
+            res.set({
+                'Content-Type': 'application/json',
+                'Status': 200,
+                'Content-Length': '',
+                'ETag': '12346'
+            })
+            return res.json(rows)
+            res.status(200).send('<h1>Got phones!</h1>');
+        }
+    });
+});
 
-
-// //get from table
+//get from table
 let sql = `SELECT * FROM phones`;
 app.get('/phones', function(req, res) {
     db.all(sql, [], function(err, rows) {
         if (err) {
-            console.error(404);
-            return res.json(err.message)
+            res.status(404).send('<h1>NOT FOUND</h1>');
+        } else {
+            res.set({
+                'Content-Type': 'application/json',
+                'Status': 200,
+                'Content-Length': '',
+                'ETag': '12346'
+            })
+            return res.json(rows)
+            res.status(200).send('<h1>Got phones!</h1>');
         }
-        console.log('Table has been loaded');
-        return res.json(rows)
-
     });
 });
 
 //post new phones
-app.post('/phones', function(req, res, err) {
-    if (err) {
-      res.status(404).send("That didnt go as planned")
-    }
-    db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, [req.body.brand, req.body.model, req.body.os, req.body.image, req.body.screensize]);
-    console.log('Inserted phone entry into database')
-    res.set({
-      'Content-Type': 'text/plain',
-      'Status' : 200,
-      'Content-Length': '',
-      'ETag': '12345'
-      })
-      res.status(200).send('<h1>New phones have been added!</h1>');
+app.post('/phones', function(req, res) {
 
+    db.run(`INSERT INTO phones (brand, model, os, image, screensize) VALUES (?, ?, ?, ?, ?)`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize], function(err) {
+        if (err) {
+            res.status(404).send('<h1>error</h1>');
+        } else {
+            console.log('Inserted phone entry into database')
+            res.set({
+                'Content-Type': 'text/plain',
+                'Status': 200,
+                'Content-Length': '',
+                'ETag': '12345'
+            })
+            res.status(200).send('<h1>New phones have been added!</h1>');
+        }
+    });
 });
+
 
 //update brand
 app.put('/update', function(req, res) {
     db.run(` UPDATE phones
-      SET brand = ?,model=?, os=?, image=?,
-                    screensize=? WHERE id=?`, [req.body.brand, req.body.model, req.body.os, req.body.image, req.body.screensize, req.body.id], function(err){
-    console.log('updated brand')
-    if (err){
-        res.status(404).send('<h1>that didnt work!</h1>');
-    }
-      res.set({
-        'Content-Type': 'text/html',
-        'Status' : 200,
-        'Content-Length': '',
-        'ETag': '12347'
-        })
-        console.log(res.status(200).send('<h1>This entry has been edited!</h1>'));
-});
+    SET brand = ?,model=?, os=?, image=?,
+    screensize=? WHERE id=?`, [req.body[0].brand, req.body[0].model, req.body[0].os, req.body[0].image, req.body[0].screensize, req.body[0].id], function(err) {
+        console.log('updated brand')
+        if (err) {
+            res.status(404).send('<h1>NOT FOUND</h1>');
+        } else {
+            res.set({
+                'Content-Type': 'text/html',
+                'Status': 200,
+                'Content-Length': '',
+                'ETag': '12347'
+            })
+            res.status(200).send('<h1>This entry has been edited!</h1>');
+        }
+    });
 });
 
 //delete row
 app.delete('/delete', function(req, res) {
     var deletedItem = req.body[0].brand;
 
-    db.run(`DELETE FROM phones WHERE brand=?`, [deletedItem], function(err, rows) {
-        // if (exists == 0) {
-        //     return res.status(404).send(err.message);
-        // }
-        // console.log(`Row deleted`)
-        res.set({
-          'Content-Type': 'text/html',
-          'Status' : 200,
-          'Content-Length': '',
-          'ETag': '12346'
-          })
-          res.status(200).send('<h1>This phone has been deleted!</h1>');
+    db.all(`SELECT FROM phones WHERE brand=?`, [deletedItem], function(err, rows) {
+        if (rows.length == 0) {
+            res.set({
+                'Content-Type': 'text/html',
+                'Status': 404,
+                'Content-Length': '',
+                'ETag': '12346'
+            })
+            console.log(`Row NOT FOUND`)
+            res.status(404).send('<h1>NOT FOUND</h1>');
+        } else {
+            db.run(`DELETE FROM phones WHERE brand=?`, [deletedItem], function(err) {
+
+                console.log(`Row deleted`)
+                res.set({
+                    'Content-Type': 'text/html',
+                    'Status': 200,
+                    'Content-Length': '',
+                    'ETag': '12346'
+                })
+                res.status(200).send('<h1>This phone has been deleted!</h1>');
+            });
+        }
+    });
 });
+
+//reset table
+app.delete('/reset', function(req, res) {
+    db.run(`DELETE FROM phones`, [], function(err) {
+        if (err) {
+            res.status(404).send('<h1>NOT FOUND</h1>');
+        }
+        console.log(`Table reset`)
+        res.set({
+            'Content-Type': 'text/html',
+            'Status': 200,
+            'Content-Length': '',
+            'ETag': '12346'
+        })
+        res.status(200).send('<h1>Table reset</h1>');
+    });
 });
 
 
@@ -120,4 +171,4 @@ function my_database(filename) {
         });
     });
     return db;
-  }
+}

@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>API DOCUMENTATION</title>
     <link href="stylesheet.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <p class="para" id="intro"><h1>Welcome to our API Documentation.</h1>
-      In order to get started its as easy as:
-        <ol>
-          <li>Downloading node package manage(npm)</li>
-          <li>Opening your Command Shell/Terminal in the directory that contains our files
-          <li>Typing in the command <i>npm start</i> </li>
-            <ul>
-              <li>If you are missing some of the required packages you may need to use <i>npm install</i> before doing this.</li>
-              <li>See <a href="#packages">here</a> for a list of these packages.</li>
-            </ul>
-          </ol>
-      It is our hope that this document helps you to easily navigate our website + server and give you full functionality to our DATABASE.<br>
-        <h2>Once you have everything setup click <a href="http://localhost:3000/">here</a> to visit our webshop!</h2></p>
-    <table>
-      <thead> This is our guide to using our HTTP1.1 methods<thead>
-      <th>Methods</th>
-      <th>Actions</th>
-        <tr>
-          <td>GET</td>
-          <td>This will retrieve all data from our database and return in an array of json elements with key value pairs</td>
-        <tr>
-          <td>POST</td>
-          <td>Once filling in our form, using the submit button, you will have logged a POST request which adds the new elements to our database in a json string.
-            Each entry is given a unique value for the ID key.</td>
-        </tr>
-          <td>PUT</td>
-          <td>to be filled</td>
-        <tr>
-          <td>DELETE</td>
-          <td>to be filled</td>
-      </tr>
-      </table>
-      <h1>A Few Common Errors</h1>
-      <p class='para'>
+</head>
 
-        The screensize must be an numerical value. Either a float or an int, anything else will cause an error<br>
-        The image block requires a url or else nothing will be rendered.<br>
-        The database is stored in JSON fromat and the form data is parsed the same way.<br>Attempting to submit form data to our database externally, without the proper formatting, will cause errors<br>
-      </p>
+<body>
+    <p class="para" id="intro">
+        <h1>Welcome to our API Documentation.</h1>
+        In order to get started its as easy as:
+        <ol>
+            <li>Downloading node package manage(npm)</li>
+            <li>Opening your Command Shell/Terminal in the directory that contains our files
+                <li>Typing in the command <i>npm start</i> </li>
+                <ul>
+                    <li>If you are missing some of the required packages you may need to use <i>npm install</i> before doing this.</li>
+                    <li>See <a href="#packages">here</a> for a list of these packages.</li>
+                </ul>
+        </ol>
+        It is our hope that this document helps you to easily navigate our website + server and give you full functionality to our DATABASE.<br>
+        <h2>Once you have everything setup click <a href="http://localhost:3000/">here</a> to visit our webshop!</h2>
+    </p>
     <table>
-      <thead>ERROR Messages and what they mean<thead>
-      <th>ERROR CODE</th>
-      <th>Meaning</th>
+        <thead> This is our guide to using our HTTP1.1 methods
+            <thead>
+                <th>Methods</th>
+                <th>Actions</th>
+                <tr>
+                    <td>GET</td>
+                    <td>This will retrieve all data from our database and return in an array of json elements with key value pairs</td>
+                    <tr>
+                        <td>POST</td>
+                        <td>Once filling in our form, using the submit button, you will have logged a POST request which adds the new elements to our database in a json string. Each entry is given a unique value for the ID key.</td>
+                    </tr>
+                    <td>PUT</td>
+                    <td>Use the unique id KEY to update elements</td>
+                    <tr>
+                        <td>DELETE</td>
+                        <td>Use brand name to delete elements</td>
+                    </tr>
+    </table>
+
+    <table>
+        <thead> This are our URL paths
+            <thead>
+                <th>Path</th>
+                <th>Description</th>
+                <tr>
+                    <td>'http://localhost:3000'</td>
+                    <td>use this URL you can get our all phones' information </td>
+                    <tr>
+                        <td>'/phones'</td>
+                        <td>use this path you can GET or POST phone information</td>
+                    </tr>
+                    <td>'/update'</td>
+                    <td>use this path to change resources</td>
+                    <tr>
+                        <td>'/delete'</td>
+                        <td>use this path to delete elements</td>
+                    </tr>
+    </table>
+
+    <h1>A Few Common Errors</h1>
+    <p class='para'>
+
+        The screensize must be an numerical value. Either a float or an int, anything else will cause an error<br> The image block requires a url or else nothing will be rendered.<br> The database is stored in JSON fromat and the form data is parsed the
+        same way.<br>Attempting to submit form data to our database externally, without the proper formatting, will cause errors<br>
+    </p>
+    <table>
+        <thead>response status</thead>
+        <th>STATUS CODE</th>
+        <th>Meaning</th>
         <tr>
-          <td>200</td>
-          <td>to be filled</td>
-        <tr>
-          <td>202</td>
-          <td>to be filled</td>
-        </tr>
-          <td>404</td>
-          <td>to be filled</td>
-        <tr>
-          <td>500</td>
-          <td>Server side error and should be reported to the owner of the website</td>
-      </tr>
+            <td>200</td>
+            <td>Standard response for successful HTTP requests.</td>
+            <tr>
+                <td>202</td>
+                <td>The request has been accepted for processing, but the processing has not been completed</td>
+            </tr>
+            <td>404</td>
+            <td>The requested resource could not be found but may be available in the future</td>
+            <tr>
+                <td>500</td>
+                <td>Server side error and should be reported to the owner of the website</td>
+            </tr>
     </table>
     <section id="packages">
-      <h1 id="dependencies">List of dependencies</h1>
-    <ul>
-      <li>Express</li>
-      <li>sqlite3</li>
-      <li>nodemon</li>
-    </ul>
+        <h1 id="dependencies">List of dependencies</h1>
+        <ul>
+            <li>Express</li>
+            <li>sqlite3</li>
+            <li>nodemon</li>
+        </ul>
 
-  </section>
-  </body>
+    </section>
+</body>
+
 </html>
