@@ -61,8 +61,8 @@ function sortTable2(z) {
 function reset() {
     $('#reset').click(function() {
         $.ajax({
-            url: 'http://localhost:3000/phones',
-            type: "GET",
+            url: 'http://localhost:3000/reset',
+            type: "DELETE",
             dataType: "html",
             success: function(data) {
                 alert(data);
@@ -94,11 +94,11 @@ function loadTableData() {
 
 function insertTableData() {
     // $("#insert").click(function() {
-        $.ajax({
-            url: 'http://localhost:3000/phones',
-            type: "GET",
-            dataType: "json",
-            success: function(data) {
+    $.ajax({
+        url: 'http://localhost:3000/phones',
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
                 var tableData = "";
                 clearTable();
                 $.each(data, function(key, value) {
@@ -112,7 +112,7 @@ function insertTableData() {
                 });
                 $('#table1').append(tableData);
             }
-        // });
+            // });
     });
 }
 
