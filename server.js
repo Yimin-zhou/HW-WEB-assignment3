@@ -90,8 +90,8 @@ app.put('/update', function(req, res) {
 app.delete('/delete', function(req, res) {
     var deletedItem = req.body[0].brand;
 
-    db.all(`SELECT FROM phones WHERE brand=?`, [deletedItem], function(err, rows) {
-        if (rows.length == 0) {
+    db.get(`SELECT * FROM phones WHERE brand=?`, [deletedItem], function(err, rows) {
+        if (rows == null) {
             res.set({
                 'Content-Type': 'text/html',
                 'Status': 404,
